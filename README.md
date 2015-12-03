@@ -40,7 +40,7 @@ Returns `{ "id": PROMOTER_SCORE_ID }`
 ## Information on NPS Metric ##
 There is some fantastic information available online to help you understand the NPS metric and how to use it to create healthier relationships with your users.
 
-The [Brain & Company website](http://netpromotersystem.com/ "Title") is a handy resource for gaining insight into your applications net promoter score.
+The [Bain & Company website](http://netpromotersystem.com/ "Title") is a handy resource for gaining insight into your applications net promoter score.
 
 ## Features ##
 __Administrative Page__
