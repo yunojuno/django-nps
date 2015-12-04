@@ -1,6 +1,12 @@
 # Django Net Promoter Score #
 
-Django Net Promoter Score is designed to help you find out what your customers think of your application. The net promoter score metric is based on user feedback to one question, "On a scale from 1 to 10 how likely are you to recommend us to a friend or colleague?". You can jazz this question up to fit your projects needs, and use Django Net Promoter Score to keep track of user response and detect when it is time to ask a user the question again. Django Net Promoter Score also features an administrative page that displays a breakdown of the net promoter score metric over a 13 month period.
+NB This project was originally forked from https://github.com/epantry/django-netpromoterscore,
+but has since moved far enough away from that project to be considered a separate project (i.e.
+it won't ever be merged back in).
+
+---
+
+<!-- Django Net Promoter Score is designed to help you find out what your customers think of your application. The net promoter score metric is based on user feedback to one question, "On a scale from 1 to 10 how likely are you to recommend us to a friend or colleague?". You can jazz this question up to fit your projects needs, and use Django Net Promoter Score to keep track of user response and detect when it is time to ask a user the question again. Django Net Promoter Score also features an administrative page that displays a breakdown of the net promoter score metric over a 13 month period.
 
 ## Installation ##
 
@@ -46,3 +52,4 @@ The [Bain & Company website](http://netpromotersystem.com/ "Title") is a handy r
 __Administrative Page__
 ![net promoter score administrative page][id]
 [id]: http://i.imgur.com/lwI4W5K.png "Net Promoter Score Admin Page"
+ -->
