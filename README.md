@@ -1,6 +1,6 @@
 # Django NPS #
 
-**Django application for managing Net Promoter Score values**
+**Django app supporting Net Promoter Score (NPS) surveys**
 
 ---
 
