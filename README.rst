@@ -3,14 +3,6 @@ Django NPS
 
 **Django app supporting Net Promoter Score (NPS) surveys**
 
-----
-
-NB This project was originally forked from https://github.com/epantry/django-netpromoterscore,
-but has since moved far enough away from that project to be considered a separate project.
-Credit is due to **epantry** for the original project.
-
-----
-
 Background - Net Promoter Score
 -------------------------------
 
@@ -122,3 +114,10 @@ Usual rules apply:
 3. Submit PR
 
 Please take care to follow the coding style - and PEP8.
+
+Acknowledgements
+----------------
+
+Credit is due to **epantry** for the `original project <https://github.com/epantry/django-netpromoterscore>`_ from which this was forked.
+
+Thanks also to the kind people at **Eldarion** (`website  <http://eldarion.com/>`_) for releasing the PyPI package name.
