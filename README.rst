@@ -38,7 +38,7 @@ Usage
 This app is used to store the individual scores, and calculate the NPS based
 on these. It does not contain any templates for displaying the question itself,
 neither does it put any restriction around how often you ask the question, or
-to whom. It is up to the app developer to determine how this should work - 
+to whom. It is up to the app developer to determine how this should work -
 each score is timestamped and linked to a Django User object, so you can
 easily work out the time elapsed since the last time they were asked.
 
@@ -49,9 +49,8 @@ method:
 .. code:: python
 
     >>> # only show the survey every 90 days
-    >>> show_nps = UserScore.objects.display_to_user(request.user, 90)
+    >>> UserScore.objects.days_since_user_score(request.user) > 90
     True
-
 
 If you then show the survey - the output of which is a single value (the score)
 together with an optional reason ("what is the main reason for your score"), is
@@ -87,6 +86,51 @@ are a list of lists, as returned from the Django `Form.errors` property:
       "success": False,
       "errors": [["score", "Score must be between 0-10"]]
     }
+
+The app contains a piece of middleware, ``NPSMiddleware``, which will add an
+attribute to the ``HttpRequest`` object called ``show_nps``. If you add the
+middleware to your settings:
+
+.. code:: python
+
+    # settings.py
+    MIDDLEWARE_CLASSES = (
+        # standard django middleware
+        'django.middleware.common.CommonMiddleware',
+        'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
+        ...
+        'net_promoter_score.NPSMiddleware',
+    )
+
+You can then use this value in your templates:
+
+.. code:: html
+
+    <!-- show_nps template = {{request.show_nps}} -->
+    {% if request.show_nps %}
+        <div>HTML goes here</div>
+    {% endif %}
+
+Settings
+--------
+
+**NPS_DISPLAY_INTERVAL**
+
+The number of days between surveys, integer, defaults to 30. This value is
+used by the default ``show_nps`` function to determine whether someone should
+be shown the survey.
+
+**NPS_DISPLAY_FUNCTION**
+
+A function that takes an ``HttpRequest`` object as its only argument, and
+which returns True if you want to show the survey. This function is used
+by the ``net_promoter_score.show_nps`` function. It defaults to return True
+if the request user has either never seen the survey, or hasn't seen it
+for more days than the ``NPS_DISPLAY_INTERVAL``.
+
+This function should be overridden if you want fine-grained control over
+the process - it's the main hook into the app.
 
 Tests
 -----

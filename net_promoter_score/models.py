@@ -64,20 +64,6 @@ class UserScoreQuerySet(models.query.QuerySet):
         else:
             return (tz_now().date() - score.timestamp.date()).days
 
-    def display_to_user(self, user, min_interval):
-        """Return bool whether to display the survey to a user.
-
-        Args:
-            user: the User object under consideration, usually from
-                request.user, but may come direct
-            min_interval: int, the minimum number of days between
-                asking a given user for a score.
-
-        Returns True if the days_since_user_score is greater than the interval.
-
-        """
-        return min_interval < self.days_since_user_score(user)
-
 
 class UserScore(models.Model):
 

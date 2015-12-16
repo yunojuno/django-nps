@@ -128,17 +128,3 @@ class UserScoreQuerySetTests(TransactionTestCase):
         # delete all scores for the user
         score.delete()
         self.assertEqual(UserScore.objects.days_since_user_score(self.user), -1)
-
-    def test_display_to_user(self):
-        score = UserScore.objects.most_recent_user_score(self.user)
-        # need to delete all the others
-        UserScore.objects.exclude(id=score.id).delete()
-        self.assertEqual(UserScore.objects.days_since_user_score(self.user), 0)
-        # set the date back 7 days
-        today = datetime.date.today()
-        score.timestamp = today - datetime.timedelta(days=7)
-        score.save()
-        self.assertEqual(UserScore.objects.days_since_user_score(self.user), 7)
-        self.assertEqual(UserScore.objects.display_to_user(self.user, 6), True)
-        self.assertEqual(UserScore.objects.display_to_user(self.user, 7), False)
-        self.assertEqual(UserScore.objects.display_to_user(self.user, 8), False)

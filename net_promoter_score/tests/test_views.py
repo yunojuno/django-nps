@@ -21,7 +21,7 @@ class UserScoreViewTests(TransactionTestCase):
 
     def test_valid_post_201(self):
         """Test that posting valid data returns the score and status_code 201."""
-        data={'score': 0, 'reason': u"√" * 512}
+        data = {'score': 0, 'reason': u"√" * 512}
         request = self.factory.post('/', data)
         request.user = self.user
         resp = post_score(request)

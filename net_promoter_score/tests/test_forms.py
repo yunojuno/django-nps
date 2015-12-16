@@ -3,7 +3,6 @@ from django.contrib.auth import get_user_model
 from django.test import TransactionTestCase
 
 from net_promoter_score.forms import UserScoreForm
-from net_promoter_score.models import UserScore, score_group
 
 
 class UserScoreFormTests(TransactionTestCase):
@@ -26,11 +25,11 @@ class UserScoreFormTests(TransactionTestCase):
             self.assertFalse(self.validate_form(data={'score': i}))
 
     def test_clean_unicode_reason(self):
-        data={'score': 0, 'reason': u"√" * 512}
+        data = {'score': 0, 'reason': u"√" * 512}
         self.assertTrue(self.validate_form(data=data))
 
     def test_clean_invalid_reason(self):
-        data={'score': 0, 'reason': u"√" * 513}
+        data = {'score': 0, 'reason': u"√" * 513}
         self.assertFalse(self.validate_form(data))
 
     def test_save(self):
