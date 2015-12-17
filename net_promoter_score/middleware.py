@@ -11,8 +11,17 @@ from net_promoter_score import show_nps
 
 
 class NPSMiddleware(object):
+
     """Add show_nps attr to the user session."""
 
     def process_request(self, request):
-        request.show_nps = show_nps(request)
+        # force instantiation of the request.user SimpleLazyObject
+        assert hasattr(request, 'user'), (
+            "Missing middleware: "
+            "'django.contrib.auth.middleware.AuthenticationMiddleware'"
+        )
+        if request.user.is_authenticated():
+            request.show_nps = show_nps(request)
+        else:
+            request.show_nps = False
         return None

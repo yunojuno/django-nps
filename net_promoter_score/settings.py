@@ -22,7 +22,8 @@ def default_display_function(request):
 
     """
     assert hasattr(request, 'user'), (
-        "Missing Django auth middleware - request has no user attr."
+        "Missing middleware: "
+        "'django.contrib.auth.middleware.AuthenticationMiddleware'"
     )
     interval = UserScore.objects.days_since_user_score(request.user)
     if interval == -1:
