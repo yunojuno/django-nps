@@ -33,6 +33,6 @@ def default_display_function(request):
 
 
 # default display interval is 30 days
-NPS_DISPLAY_INTERVAL = getattr(settings, 'NPS_DISPLAY_FUNC', 30)
+NPS_DISPLAY_INTERVAL = getattr(settings, 'NPS_DISPLAY_INTERVAL', 30)
 # default display function is to show every 30 days, ignoring any user attrs.
-NPS_DISPLAY_FUNCTION = getattr(settings, 'NPS_DISPLAY_FUNC', default_display_function)
+NPS_DISPLAY_FUNCTION = getattr(settings, 'NPS_DISPLAY_FUNCTION', default_display_function)
