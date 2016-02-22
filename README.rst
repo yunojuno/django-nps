@@ -3,6 +3,9 @@ Django NPS
 
 **Django app supporting Net Promoter Score (NPS) surveys**
 
+.. image:: https://travis-ci.org/yunojuno/django-nps.svg?branch=master
+    :target: https://travis-ci.org/yunojuno/django-nps
+
 Background - Net Promoter Score
 -------------------------------
 
