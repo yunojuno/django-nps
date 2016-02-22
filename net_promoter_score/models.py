@@ -56,7 +56,8 @@ class UserScoreQuerySet(models.query.QuerySet):
     def days_since_user_score(self, user):
         """Return the number of days since the User last submitted a score.
 
-        Returns -1 if the user has never been asked
+        Returns -1 if the user has never been asked.
+
         """
         score = self.most_recent_user_score(user)
         if score is None:
@@ -80,6 +81,9 @@ class UserScore(models.Model):
         (GROUP_NEUTRAL, 'Neutral (7-8)'),
         (GROUP_PROMOTER, 'Promoter (9-10)')
     )
+
+    class Meta:
+        app_label = 'net_promoter_score'
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, db_index=True)
     timestamp = models.DateTimeField()
