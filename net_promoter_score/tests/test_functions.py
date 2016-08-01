@@ -5,7 +5,7 @@ import mock
 from django.contrib.auth import get_user_model
 from django.test import TransactionTestCase, RequestFactory
 
-from net_promoter_score import show_nps
+from net_promoter_score.utils import show_nps
 from net_promoter_score.models import UserScore
 from net_promoter_score.settings import default_display_function, NPS_DISPLAY_INTERVAL
 
