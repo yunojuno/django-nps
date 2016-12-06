@@ -1,10 +1,16 @@
+.. image:: https://badge.fury.io/py/django-nps.svg
+    :target: https://badge.fury.io/py/django-nps
+
+.. image:: https://travis-ci.org/yunojuno/django-nps.svg?branch=master
+    :target: https://travis-ci.org/yunojuno/django-nps
+
+.. image:: https://codecov.io/gh/yunojuno/django-nps/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/yunojuno/django-nps
+
 Django NPS
 ==========
 
 **Django app supporting Net Promoter Score (NPS) surveys**
-
-.. image:: https://travis-ci.org/yunojuno/django-nps.svg?branch=master
-    :target: https://travis-ci.org/yunojuno/django-nps
 
 Background - Net Promoter Score
 -------------------------------
