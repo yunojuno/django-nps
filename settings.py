@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 DEBUG = True
 
-DATABASES= {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'nps.db',
