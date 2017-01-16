@@ -1,4 +1,10 @@
 # -*- coding: utf-8 -*-
+from distutils.version import StrictVersion
+
+import django
+
+DJANGO_VERSION = StrictVersion(django.get_version())
+
 DEBUG = True
 
 DATABASES = {
@@ -18,13 +24,18 @@ INSTALLED_APPS = (
     'net_promoter_score',
 )
 
-MIDDLEWARE_CLASSES = [
+_MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 ]
+
+if DJANGO_VERSION < StrictVersion('1.10.0'):
+    MIDDLEWARE_CLASSES = _MIDDLEWARE_CLASSES
+else:
+    MIDDLEWARE = _MIDDLEWARE_CLASSES
 
 SECRET_KEY = "NPS"
 

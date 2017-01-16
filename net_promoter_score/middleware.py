@@ -7,10 +7,17 @@ on each request. This value is added to the user session (so a max
 of one lookup per session.
 
 """
+try:
+    from django.utils.deprecation import MiddlewareMixin
+except ImportError:
+    # Fallback for Django < 1.10
+    MiddlewareMixin = object
+
+
 from net_promoter_score.utils import show_nps
 
 
-class NPSMiddleware(object):
+class NPSMiddleware(MiddlewareMixin):
 
     """Add show_nps attr to the user session."""
 
