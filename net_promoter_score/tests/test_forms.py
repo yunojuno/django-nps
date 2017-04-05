@@ -2,7 +2,7 @@
 from django.contrib.auth import get_user_model
 from django.test import TransactionTestCase
 
-from net_promoter_score.forms import UserScoreForm
+from ..forms import UserScoreForm
 
 
 class UserScoreFormTests(TransactionTestCase):
@@ -17,7 +17,7 @@ class UserScoreFormTests(TransactionTestCase):
         return form.is_valid()
 
     def test_clean_valid_score(self):
-        for i in xrange(0, 11):
+        for i in range(0, 11):
             self.assertTrue(self.validate_form(data={'score': i}))
 
     def test_clean_invalid_score(self):

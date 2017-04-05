@@ -119,18 +119,15 @@ class UserScore(models.Model):
 
     objects = UserScoreQuerySet.as_manager()
 
-    def __unicode__(self):
+    def __str__(self):
         if self.timestamp:
-            return u"%s is a %s (%s/10), %s" % (
+            return "%s is a %s (%s/10), %s" % (
                 self.user, self.group, self.score, self.timestamp.date()
             )
         else:
-            return u"%s is a %s (%s/10), unsaved" % (
+            return "%s is a %s (%s/10), unsaved" % (
                 self.user, self.group, self.score
             )
-
-    def __str__(self):
-        return unicode(self).encode('utf-8')
 
     def __repr__(self):
         return "<UserScore: id=%s user=%s score=%s>" % (

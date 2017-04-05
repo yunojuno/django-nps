@@ -4,7 +4,7 @@ import datetime
 from django.contrib.auth import get_user_model
 from django.test import TransactionTestCase
 
-from net_promoter_score.models import UserScore, score_group
+from ..models import UserScore, score_group
 
 
 class UserScoreModelTests(TransactionTestCase):
@@ -33,13 +33,8 @@ class UserScoreModelTests(TransactionTestCase):
         self.user.username = unicode_username
         self.user.save()
         score = UserScore(user=self.user, score=10)
-        self.assertIsNotNone(unicode(score))
-        self.assertIsNotNone(str(score))
-        self.assertIsNotNone(repr(score))
         score.save()
-        self.assertIsNotNone(unicode(score))
-        self.assertIsNotNone(str(score))
-        self.assertIsNotNone(repr(score))
+        str(score)
 
     def test_functions(self):
         self.assertRaises(AssertionError, score_group, None)
