@@ -21,7 +21,7 @@ class UserScoreViewTests(TransactionTestCase):
 
     def test_valid_post_201(self):
         """Test that posting valid data returns the score and status_code 201."""
-        data = {'score': 0, 'reason': u"√" * 512}
+        data = {'score': 0, 'reason': "√" * 512}
         request = self.factory.post('/', data)
         request.user = self.user
         resp = post_score(request)
@@ -40,13 +40,13 @@ class UserScoreViewTests(TransactionTestCase):
         self.assertEqual(resp.status_code, 422)
         respj = json.loads(resp.content)
         self.assertEqual(respj['success'], False)
-        self.assertEqual(respj['errors'], [[u'score', u'Score must be between 0-10']])  # noqa
+        self.assertEqual(respj['errors'], [['score', 'Score must be between 0-10']])  # noqa
 
     def test_client_post_anon_302(self):
         """Test posting as an AnonymousUser to the url."""
         client = Client()
         url = reverse('net_promoter_score:post_score')
-        resp = client.post(url, data={'score': 0, 'reason': u"√" * 512})
+        resp = client.post(url, data={'score': 0, 'reason': "√" * 512})
         self.assertEqual(resp.status_code, 302)
 
     def test_client_post_auth_201(self):
@@ -54,6 +54,6 @@ class UserScoreViewTests(TransactionTestCase):
         client = Client()
         client.login(username='zoidberg', password='foo')
         url = reverse('net_promoter_score:post_score')
-        resp = client.post(url, data={'score': 0, 'reason': u"√" * 512})
+        resp = client.post(url, data={'score': 0, 'reason': "√" * 512})
         self.assertEqual(resp.status_code, 201)
         self.assertEqual(UserScore.objects.count(), 1)

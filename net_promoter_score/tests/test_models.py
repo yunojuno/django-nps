@@ -29,7 +29,7 @@ class UserScoreModelTests(TransactionTestCase):
         self.assertEqual(score.group, UserScore.GROUP_DETRACTOR)
 
     def test_strings(self):
-        unicode_username = u"åß∂ƒ©˙∆˚"
+        unicode_username = "åß∂ƒ©˙∆˚"
         self.user.username = unicode_username
         self.user.save()
         score = UserScore(user=self.user, score=10)

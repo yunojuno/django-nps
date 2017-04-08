@@ -11,7 +11,7 @@ class UserScoreForm(forms.ModelForm):
     reason = forms.CharField(max_length=512, required=False)
 
     def __init__(self, *args, **kwargs):
-        assert 'user' in kwargs, u"Score must have a valid user."
+        assert 'user' in kwargs, "Score must have a valid user."
         self.user = kwargs.pop('user')
         super(UserScoreForm, self).__init__(*args, **kwargs)
 

@@ -105,7 +105,7 @@ class UserScore(models.Model):
         max_length=10,
         default=GROUP_UNKNOWN,
         choices=GROUP_CHOICES,
-        help_text=u"Detractor, neutral or promoter.",
+        help_text="Detractor, neutral or promoter.",
         db_index=True
     )
     source = models.CharField(

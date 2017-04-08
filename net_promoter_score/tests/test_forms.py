@@ -25,15 +25,15 @@ class UserScoreFormTests(TransactionTestCase):
             self.assertFalse(self.validate_form(data={'score': i}))
 
     def test_clean_unicode_reason(self):
-        data = {'score': 0, 'reason': u"√" * 512}
+        data = {'score': 0, 'reason': "√" * 512}
         self.assertTrue(self.validate_form(data=data))
 
     def test_clean_invalid_reason(self):
-        data = {'score': 0, 'reason': u"√" * 513}
+        data = {'score': 0, 'reason': "√" * 513}
         self.assertFalse(self.validate_form(data))
 
     def test_save(self):
-        data = {'score': 0, 'reason': u"∂ƒ©˙∆˚¬"}
+        data = {'score': 0, 'reason': "∂ƒ©˙∆˚¬"}
         form = UserScoreForm(data=data, user=self.user)
         score = form.save()
         self.assertIsNotNone(score)

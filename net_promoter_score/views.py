@@ -34,5 +34,5 @@ def post_score(request):
         score = form.save()
         return JsonResponse({'success': True, 'score': score.json()}, status=201)  # noqa
     else:
-        errors = [(k, v[0]) for k, v in form.errors.items()]
+        errors = [(k, v[0]) for k, v in list(form.errors.items())]
         return JsonResponse({'success': False, 'errors': errors}, status=422)
