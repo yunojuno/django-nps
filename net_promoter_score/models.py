@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-"""net_promoter_score models."""
 from django.db import models
 from django.conf import settings
 from django.utils.timezone import now as tz_now
@@ -121,17 +120,22 @@ class UserScore(models.Model):
 
     def __str__(self):
         if self.timestamp:
-            return "%s is a %s (%s/10), %s" % (
-                self.user, self.group, self.score, self.timestamp.date()
+            return "{} ({}/10), {}".format(
+                self.group,
+                self.score,
+                self.timestamp.date()
             )
         else:
-            return "%s is a %s (%s/10), unsaved" % (
-                self.user, self.group, self.score
+            return "{} ({}/10), unsaved".format(
+                self.group,
+                self.score
             )
 
     def __repr__(self):
         return "<UserScore: id=%s user=%s score=%s>" % (
-            self.id, self.user.id, self.score
+            self.id,
+            self.user.id,
+            self.score
         )
 
     def save(self, *args, **kwargs):
