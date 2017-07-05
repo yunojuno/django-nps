@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='userscore',
             name='source',
-            field=models.CharField(help_text=b"Source of user score, used for filtering results, e.g. 'app', 'web', 'email'.", max_length=20, blank=True),
+            field=models.CharField(help_text="Source of user score, used for filtering results, e.g. 'app', 'web', 'email'.", max_length=20, blank=True),
         ),
     ]
