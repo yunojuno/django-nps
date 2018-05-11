@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Default settings for net_promoter_score.
 
 Override these settings in the Django settings if required.
@@ -6,7 +5,7 @@ Override these settings in the Django settings if required.
 """
 from django.conf import settings
 
-from net_promoter_score.models import UserScore
+from .models import UserScore
 
 
 def default_display_function(request):

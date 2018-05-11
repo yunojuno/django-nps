@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 import datetime
+from unittest import mock
 
 from django.contrib.auth import get_user_model
 from django.test import TransactionTestCase, RequestFactory
 
-from ..compat import mock
 from ..models import UserScore
 from ..settings import default_display_function, NPS_DISPLAY_INTERVAL
 from ..utils import show_nps

@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 from django.contrib import admin
 
-from net_promoter_score.models import UserScore
+from .models import UserScore
 
 
 class UserScoreAdmin(admin.ModelAdmin):
