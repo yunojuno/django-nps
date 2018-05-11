@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
+from unittest import mock
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AnonymousUser
 from django.test import TransactionTestCase, RequestFactory
 
-from ..compat import mock
 from ..middleware import NPSMiddleware
 from ..models import UserScore
 

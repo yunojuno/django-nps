@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
-
-from net_promoter_score import settings
+from . import settings
 
 
 def show_nps(request):

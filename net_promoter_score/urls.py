@@ -1,12 +1,12 @@
-# -*- coding: utf-8 -*-
-from django.conf.urls import url
+try:
+    from django.urls import re_path
+except ImportError:
+    from django.conf.urls import url as re_path
 
-from net_promoter_score import views
+from . import views
+
+app_name = 'net_promoter_score'
 
 urlpatterns = [
-    url(
-        r'^score/$',
-        views.post_score,
-        name="post_score"
-    ),
+    re_path(r'^score/$', views.post_score, name="post_score"),
 ]

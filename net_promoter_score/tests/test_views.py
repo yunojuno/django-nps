@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 import json
 
 from django.contrib.auth import get_user_model
-from django.core.urlresolvers import reverse
 from django.test import Client, TransactionTestCase, RequestFactory
+from django.urls import reverse
 
 from ..models import score_group, UserScore
 from ..views import post_score

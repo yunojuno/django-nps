@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.db import models
 from django.conf import settings
 from django.utils.timezone import now as tz_now
@@ -86,7 +83,11 @@ class UserScore(models.Model):
     class Meta:
         app_label = 'net_promoter_score'
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, db_index=True)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        db_index=True
+    )
     timestamp = models.DateTimeField()
     score = models.IntegerField(
         default=-1,

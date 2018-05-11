@@ -1,14 +1,12 @@
-# -*- coding:utf-8 -*-
-"""net_promoter_score views."""
 from django.contrib.auth.decorators import user_passes_test
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 
-from net_promoter_score.forms import UserScoreForm
+from .forms import UserScoreForm
 
 
 @require_POST
-@user_passes_test(lambda u: u.is_authenticated())
+@user_passes_test(lambda u: u.is_authenticated)
 def post_score(request):
     """POST handler for NPS scores.
 
