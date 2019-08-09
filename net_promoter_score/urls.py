@@ -5,8 +5,6 @@ except ImportError:
 
 from . import views
 
-app_name = 'net_promoter_score'
+app_name = "net_promoter_score"
 
-urlpatterns = [
-    re_path(r'^score/$', views.post_score, name="post_score"),
-]
+urlpatterns = [re_path(r"^score/$", views.post_score, name="post_score")]

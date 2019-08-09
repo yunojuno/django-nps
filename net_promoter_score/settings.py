@@ -20,7 +20,7 @@ def default_display_function(request):
         request: the HttpRequest object relating to the request.
 
     """
-    assert hasattr(request, 'user'), (
+    assert hasattr(request, "user"), (
         "Missing middleware: "
         "'django.contrib.auth.middleware.AuthenticationMiddleware'"
     )
@@ -33,6 +33,8 @@ def default_display_function(request):
 
 
 # default display interval is 30 days
-NPS_DISPLAY_INTERVAL = getattr(settings, 'NPS_DISPLAY_INTERVAL', 30)
+NPS_DISPLAY_INTERVAL = getattr(settings, "NPS_DISPLAY_INTERVAL", 30)
 # default display function is to show every 30 days, ignoring any user attrs.
-NPS_DISPLAY_FUNCTION = getattr(settings, 'NPS_DISPLAY_FUNCTION', default_display_function)
+NPS_DISPLAY_FUNCTION = getattr(
+    settings, "NPS_DISPLAY_FUNCTION", default_display_function
+)
