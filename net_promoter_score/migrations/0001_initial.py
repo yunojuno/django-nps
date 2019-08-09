@@ -53,7 +53,9 @@ class Migration(migrations.Migration):
                 (
                     "user",
                     models.ForeignKey(
-                        to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE
+                        to=settings.AUTH_USER_MODEL,
+                        on_delete=models.CASCADE,
+                        related_name="nps_scores",
                     ),
                 ),
             ],

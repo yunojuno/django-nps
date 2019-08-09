@@ -62,10 +62,7 @@ class UserScoreQuerySet(models.query.QuerySet):
 
         """
         score = self.most_recent_user_score(user)
-        if score is None:
-            return -1
-        else:
-            return (tz_now().date() - score.timestamp.date()).days
+        return score.elapsed if score else -1
 
 
 class UserScore(models.Model):
@@ -88,7 +85,10 @@ class UserScore(models.Model):
         app_label = "net_promoter_score"
 
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, db_index=True
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        db_index=True,
+        related_name="nps_scores",
     )
     timestamp = models.DateTimeField()
     score = models.IntegerField(
@@ -172,5 +172,5 @@ class UserScore(models.Model):
 
     @property
     def elapsed(self):
-        """The elapsed time since the score was submitted."""
-        return tz_now() - self.timestamp
+        """The number of days since the score was submitted."""
+        return (tz_now().date() - self.timestamp.date()).days

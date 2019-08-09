@@ -1,4 +1,5 @@
 import datetime
+import unittest
 
 from django.contrib.auth import get_user_model
 from django.test import TransactionTestCase
@@ -65,6 +66,19 @@ class UserScoreModelTests(TransactionTestCase):
             )
             self.assertEqual(score.is_neutral, score.group == UserScore.GROUP_NEUTRAL)
             self.assertEqual(score.is_unknown, score.group == UserScore.GROUP_UNKNOWN)
+
+    @unittest.mock.patch("net_promoter_score.models.tz_now")
+    def test_elapsed(self, mock_now):
+        timestamp = datetime.datetime(2019, 8, 8, 19, 49)
+        score = UserScore(timestamp=timestamp)
+        #  1 minute more than a day has elapsed
+        mock_now.return_value = timestamp + datetime.timedelta(days=1, minutes=1)
+        self.assertEqual(score.elapsed, 1)
+
+        #  1 minute less than a day has elapsed - we want this to
+        # return 1 day - not 0.
+        mock_now.return_value = timestamp + datetime.timedelta(days=1, minutes=-1)
+        self.assertEqual(score.elapsed, 1)
 
 
 class UserScoreQuerySetTests(TransactionTestCase):
