@@ -36,10 +36,10 @@ class UserScoreModelTests(TransactionTestCase):
         str(score)
 
     def test_functions(self):
-        self.assertRaises(AssertionError, score_group, None)
-        self.assertRaises(AssertionError, score_group, "None")
-        self.assertRaises(AssertionError, score_group, -2)
-        self.assertRaises(AssertionError, score_group, 11)
+        self.assertRaises(ValueError, score_group, None)
+        self.assertRaises(ValueError, score_group, "None")
+        self.assertRaises(ValueError, score_group, -2)
+        self.assertRaises(ValueError, score_group, 11)
         vals = (
             (-1, UserScore.GROUP_UNKNOWN),
             (0, UserScore.GROUP_DETRACTOR),
@@ -56,6 +56,14 @@ class UserScoreModelTests(TransactionTestCase):
         )
         for val, group in vals:
             self.assertEqual(score_group(val), group)
+
+    def test_is_promoter_detractor_neutral(self):
+        for val in range(-1, 11):
+            score = UserScore(user=self.user, score=val).save()
+            self.assertEqual(score.is_promoter, score.group == UserScore.GROUP_PROMOTER)
+            self.assertEqual(score.is_detractor, score.group == UserScore.GROUP_DETRACTOR)
+            self.assertEqual(score.is_neutral, score.group == UserScore.GROUP_NEUTRAL)
+            self.assertEqual(score.is_unknown, score.group == UserScore.GROUP_UNKNOWN)
 
 
 class UserScoreQuerySetTests(TransactionTestCase):
