@@ -7,10 +7,9 @@ from ..models import UserScore, score_group
 
 
 class UserScoreModelTests(TransactionTestCase):
-
     def setUp(self):
-        self.user = get_user_model().objects.create_user('zoidberg')
-        self.user2 = get_user_model().objects.create_user('nixon')
+        self.user = get_user_model().objects.create_user("zoidberg")
+        self.user2 = get_user_model().objects.create_user("nixon")
 
     def test_defaults(self):
         score = UserScore(user=self.user)
@@ -61,15 +60,16 @@ class UserScoreModelTests(TransactionTestCase):
         for val in range(-1, 11):
             score = UserScore(user=self.user, score=val).save()
             self.assertEqual(score.is_promoter, score.group == UserScore.GROUP_PROMOTER)
-            self.assertEqual(score.is_detractor, score.group == UserScore.GROUP_DETRACTOR)
+            self.assertEqual(
+                score.is_detractor, score.group == UserScore.GROUP_DETRACTOR
+            )
             self.assertEqual(score.is_neutral, score.group == UserScore.GROUP_NEUTRAL)
             self.assertEqual(score.is_unknown, score.group == UserScore.GROUP_UNKNOWN)
 
 
 class UserScoreQuerySetTests(TransactionTestCase):
-
     def setUp(self):
-        self.user = get_user_model().objects.create_user('zoidberg')
+        self.user = get_user_model().objects.create_user("zoidberg")
         self.psX = UserScore(user=self.user, score=-1).save()
         self.ps0 = UserScore(user=self.user, score=0).save()
         self.ps1 = UserScore(user=self.user, score=1).save()

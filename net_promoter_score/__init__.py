@@ -27,4 +27,4 @@ each score is timestamped and linked to a Django User object, so you can
 easily work out the time elapsed since the last time they were asked.
 
 """
-default_app_config = 'net_promoter_score.apps.NpsConfig'
+default_app_config = "net_promoter_score.apps.NpsConfig"

@@ -30,7 +30,9 @@ def post_score(request):
     form = UserScoreForm(request.POST, user=request.user)
     if form.is_valid():
         score = form.save()
-        return JsonResponse({'success': True, 'score': score.json()}, status=201)  # noqa
+        return JsonResponse(
+            {"success": True, "score": score.json()}, status=201
+        )  # noqa
     else:
         errors = [(k, v[0]) for k, v in list(form.errors.items())]
-        return JsonResponse({'success': False, 'errors': errors}, status=422)
+        return JsonResponse({"success": False, "errors": errors}, status=422)

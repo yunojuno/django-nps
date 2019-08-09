@@ -10,17 +10,17 @@ class UserScoreForm(forms.ModelForm):
     reason = forms.CharField(max_length=512, required=False)
 
     def __init__(self, *args, **kwargs):
-        assert 'user' in kwargs, "Score must have a valid user."
-        self.user = kwargs.pop('user')
+        assert "user" in kwargs, "Score must have a valid user."
+        self.user = kwargs.pop("user")
         super(UserScoreForm, self).__init__(*args, **kwargs)
 
     class Meta:
         model = UserScore
-        fields = ('score', 'reason')
-        exclude = ('user', )
+        fields = ("score", "reason")
+        exclude = ("user",)
 
     def clean_score(self):
-        score = self.cleaned_data['score']
+        score = self.cleaned_data["score"]
         if score < -1 or score > 10:
             raise forms.ValidationError("Score must be between 0-10")
         return score

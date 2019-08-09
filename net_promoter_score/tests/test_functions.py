@@ -2,10 +2,10 @@ import datetime
 from unittest import mock
 
 from django.contrib.auth import get_user_model
-from django.test import TransactionTestCase, RequestFactory
+from django.test import RequestFactory, TransactionTestCase
 
 from ..models import UserScore
-from ..settings import default_display_function, NPS_DISPLAY_INTERVAL
+from ..settings import NPS_DISPLAY_INTERVAL, default_display_function
 from ..utils import show_nps
 
 
@@ -15,20 +15,24 @@ class FunctionTests(TransactionTestCase):
 
     def setUp(self):
         self.factory = RequestFactory()
-        self.user = get_user_model().objects.create_user('zoidberg')
+        self.user = get_user_model().objects.create_user("zoidberg")
         self.score = UserScore(user=self.user, score=10).save()
 
     def test_display_to_user(self):
-        request = self.factory.get('/')
+        request = self.factory.get("/")
         request.user = self.user
-        with mock.patch('net_promoter_score.settings.NPS_DISPLAY_FUNCTION', lambda r: True):
+        with mock.patch(
+            "net_promoter_score.settings.NPS_DISPLAY_FUNCTION", lambda r: True
+        ):
             self.assertTrue(show_nps(request))
-        with mock.patch('net_promoter_score.settings.NPS_DISPLAY_FUNCTION', lambda r: False):
+        with mock.patch(
+            "net_promoter_score.settings.NPS_DISPLAY_FUNCTION", lambda r: False
+        ):
             self.assertFalse(show_nps(request))
 
     def test_default_display_function(self):
         # test that the default function behaves as expected
-        request = self.factory.get('/')
+        request = self.factory.get("/")
         request.user = self.user
         interval_func = UserScore.objects.days_since_user_score
         self.assertEqual(interval_func(self.user), 0)

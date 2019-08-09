@@ -17,7 +17,7 @@ class NPSMiddleware(MiddlewareMixin):
 
     def process_request(self, request):
         # force instantiation of the request.user SimpleLazyObject
-        assert hasattr(request, 'user'), (
+        assert hasattr(request, "user"), (
             "Missing middleware: "
             "'django.contrib.auth.middleware.AuthenticationMiddleware'"
         )
