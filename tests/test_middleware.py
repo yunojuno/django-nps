@@ -4,8 +4,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AnonymousUser
 from django.test import RequestFactory, TransactionTestCase
 
-from ..middleware import NPSMiddleware
-from ..models import UserScore
+from net_promoter_score.middleware import NPSMiddleware
+from net_promoter_score.models import UserScore
 
 
 class MiddlewareTests(TransactionTestCase):

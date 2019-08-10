@@ -4,8 +4,8 @@ from django.contrib.auth import get_user_model
 from django.test import Client, RequestFactory, TransactionTestCase
 from django.urls import reverse
 
-from ..models import UserScore, score_group
-from ..views import post_score
+from net_promoter_score.models import UserScore, score_group
+from net_promoter_score.views import post_score
 
 
 class UserScoreViewTests(TransactionTestCase):

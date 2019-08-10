@@ -4,9 +4,9 @@ from unittest import mock
 from django.contrib.auth import get_user_model
 from django.test import RequestFactory, TransactionTestCase
 
-from ..models import UserScore
-from ..settings import NPS_DISPLAY_INTERVAL, default_display_function
-from ..utils import show_nps
+from net_promoter_score.models import UserScore
+from net_promoter_score.settings import NPS_DISPLAY_INTERVAL, default_display_function
+from net_promoter_score.utils import show_nps
 
 
 class FunctionTests(TransactionTestCase):

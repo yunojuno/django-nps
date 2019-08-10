@@ -4,7 +4,7 @@ import unittest
 from django.contrib.auth import get_user_model
 from django.test import TransactionTestCase
 
-from ..models import UserScore, score_group
+from net_promoter_score.models import UserScore, score_group
 
 
 class UserScoreModelTests(TransactionTestCase):

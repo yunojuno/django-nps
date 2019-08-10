@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from distutils.version import StrictVersion
 
 import django
@@ -17,6 +16,7 @@ INSTALLED_APPS = (
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "net_promoter_score",
+    "tests",
 )
 
 MIDDLEWARE = [
