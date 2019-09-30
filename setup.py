@@ -9,7 +9,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name="django-nps",
-    version="0.6",
+    version="0.6.1",
     packages=find_packages(),
     install_requires=["Django>=1.11"],
     include_package_data=True,
@@ -17,10 +17,10 @@ setup(
     license="MIT",
     long_description=README,
     url="https://github.com/yunojuno/django-nps",
-    author="Hugo Rodger-Brown",
-    author_email="hugo@yunojuno.com",
-    maintainer="Hugo Rodger-Brown",
-    maintainer_email="hugo@yunojuno.com",
+    author="YunoJuno",
+    author_email="code@yunojuno.com",
+    maintainer="YunoJuno",
+    maintainer_email="code@yunojuno.com",
     classifiers=[
         "Environment :: Web Environment",
         "Framework :: Django",

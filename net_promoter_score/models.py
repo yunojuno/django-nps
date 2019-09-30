@@ -130,11 +130,7 @@ class UserScore(models.Model):
             return "{} ({}/10), unsaved".format(self.group, self.score)
 
     def __repr__(self):
-        return "<UserScore: id=%s user=%s score=%s>" % (
-            self.id,
-            self.user.id,
-            self.score,
-        )
+        return "<UserScore: id=%s score=%s>" % (self.id, self.score)
 
     def save(self, *args, **kwargs):
         """Set the timestamp and group attrs."""
