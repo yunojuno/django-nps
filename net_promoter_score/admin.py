@@ -4,7 +4,6 @@ from .models import UserScore
 
 
 class UserScoreAdmin(admin.ModelAdmin):
-
     """Admin model for UserScore objects."""
 
     list_display = ("user", "timestamp", "score", "group", "source")

@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
 from django.test import TransactionTestCase
-
 from net_promoter_score.forms import UserScoreForm
 
 

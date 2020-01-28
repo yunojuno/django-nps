@@ -6,7 +6,7 @@ DJANGO_VERSION = StrictVersion(django.get_version())
 
 DEBUG = True
 
-DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": "nps.db"}}
+DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": ":memory:"}}
 
 INSTALLED_APPS = (
     "django.contrib.admin",
@@ -47,9 +47,9 @@ TEMPLATES = [
     }
 ]
 
-SECRET_KEY = "NPS"
+SECRET_KEY = "TOP SECRET"
 
-ROOT_URLCONF = "urls"
+ROOT_URLCONF = "tests.urls"
 
 APPEND_SLASH = True
 

@@ -4,7 +4,9 @@
 .. image:: https://travis-ci.org/yunojuno/django-nps.svg?branch=master
     :target: https://travis-ci.org/yunojuno/django-nps
 
-**This package now support Python3 and Django 1.11 and above only. For previous versions please refer to the Python2 branch.**
+**This package now support Python 3.7+ and Django 2.2+ and above only.**
+
+For legacay versions please refer to the relevant tag / branch.**
 
 Django NPS
 ==========

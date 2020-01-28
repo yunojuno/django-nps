@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from django.contrib.auth.decorators import user_passes_test
-from django.http import JsonResponse
+from django.http import HttpRequest, JsonResponse
 from django.views.decorators.http import require_POST
 
 from .forms import UserScoreForm
@@ -7,8 +9,9 @@ from .forms import UserScoreForm
 
 @require_POST
 @user_passes_test(lambda u: u.is_authenticated)
-def post_score(request):
-    """POST handler for NPS scores.
+def post_score(request: HttpRequest) -> JsonResponse:
+    """
+    POST handler for NPS scores.
 
     Returns a JSON object, which includes a 'success' key that is True/False.
     If success is True, the response will also contain a 'score' value that

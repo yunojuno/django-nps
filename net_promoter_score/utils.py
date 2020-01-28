@@ -1,8 +1,13 @@
+from __future__ import annotations
+
+from django.http import HttpRequest
+
 from . import settings
 
 
-def show_nps(request):
-    """Return True if the NPS survey should be shown to the request user.
+def show_nps(request: HttpRequest) -> bool:
+    """
+    Return True if the NPS survey should be shown to the request user.
 
     This is a dynamic function that uses the request object to determine
     whether to display the survey. It defaults to a basic function that
