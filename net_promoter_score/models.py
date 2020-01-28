@@ -1,9 +1,14 @@
+from __future__ import annotations
+
+from typing import Any
+
 from django.conf import settings
+from django.contrib.auth.models import AbstractBaseUser
 from django.db import models
 from django.utils.timezone import now as tz_now
 
 
-def score_group(score):
+def score_group(score: int) -> str:
     """Return 'detractor', 'neutral' or 'promoter'."""
     if not isinstance(score, int):
         raise ValueError("Score must be an integer value")
@@ -23,23 +28,23 @@ def score_group(score):
 
 
 class UserScoreQuerySet(models.query.QuerySet):
-
     """Custom UserScore queryset - calculates the NPS."""
 
-    def promoters(self):
+    def promoters(self) -> UserScoreQuerySet:
         """Filter queryset by promoters."""
         return self.filter(group=UserScore.GROUP_PROMOTER)
 
-    def detractors(self):
+    def detractors(self) -> UserScoreQuerySet:
         """Filter queryset by detractors."""
         return self.filter(group=UserScore.GROUP_DETRACTOR)
 
-    def neutrals(self):
+    def neutrals(self) -> UserScoreQuerySet:
         """Filter queryset by neutrals."""
         return self.filter(group=UserScore.GROUP_NEUTRAL)
 
-    def net_promoter_score(self):
-        """Calculate the NPS score from a set of UserScore objects.
+    def net_promoter_score(self) -> float:
+        """
+        Calculate the NPS score from a set of UserScore objects.
 
         The NPS is the % of promoters - % of detractors (ignoring
         neutrals).
@@ -51,12 +56,13 @@ class UserScoreQuerySet(models.query.QuerySet):
         total = promoters + detractors + neutrals
         return (100.0 * (promoters - detractors)) / total
 
-    def most_recent_user_score(self, user):
+    def most_recent_user_score(self, user: AbstractBaseUser) -> UserScore:
         """Return the most recent user UserScore."""
         return self.filter(user=user).order_by("-id").first()
 
-    def days_since_user_score(self, user):
-        """Return the number of days since the User last submitted a score.
+    def days_since_user_score(self, user: AbstractBaseUser) -> int:
+        """
+        Return the number of days since the User last submitted a score.
 
         Returns -1 if the user has never been asked.
 
@@ -66,7 +72,6 @@ class UserScoreQuerySet(models.query.QuerySet):
 
 
 class UserScore(models.Model):
-
     """Records the NPS score given by a user."""
 
     GROUP_UNKNOWN = "unknown"
@@ -121,52 +126,50 @@ class UserScore(models.Model):
 
     objects = UserScoreQuerySet.as_manager()
 
-    def __str__(self):
+    def __str__(self) -> str:
         if self.timestamp:
-            return "{} ({}/10), {}".format(
-                self.group, self.score, self.timestamp.date()
-            )
+            return f"{self.group} ({self.score}/10), {self.timestamp.date()}"
         else:
-            return "{} ({}/10), unsaved".format(self.group, self.score)
+            return f"{self.group} ({self.score}/10), unsaved"
 
-    def __repr__(self):
-        return "<UserScore: id=%s score=%s>" % (self.id, self.score)
+    def __repr__(self) -> str:
+        return f"<UserScore: id={self.pk} score={self.score}>"
 
-    def save(self, *args, **kwargs):
+    def save(self, *args: Any, **kwargs: Any) -> UserScore:
         """Set the timestamp and group attrs."""
         self.timestamp = self.timestamp or tz_now()
         self.group = score_group(self.score)
         super().save(*args, **kwargs)
         return self
 
-    def json(self):
-        """Response JSON-serializable form of the object."""
+    def json(self) -> dict:
+        """Return JSON-serializable form of the object."""
         if not self.id:
             raise ValueError("Score must be saved before calling json().")
         return {
             "id": self.id,
-            "user": self.user.id,
+            "user": self.user.pk,
             "score": self.score,
             "group": self.group,
         }
 
     @property
-    def is_promoter(self):
+    def is_promoter(self) -> bool:
         return self.group == UserScore.GROUP_PROMOTER
 
     @property
-    def is_detractor(self):
+    def is_detractor(self) -> bool:
         return self.group == UserScore.GROUP_DETRACTOR
 
     @property
-    def is_neutral(self):
+    def is_neutral(self) -> bool:
         return self.group == UserScore.GROUP_NEUTRAL
 
     @property
-    def is_unknown(self):
+    def is_unknown(self) -> bool:
         return self.group == UserScore.GROUP_UNKNOWN
 
     @property
-    def elapsed(self):
-        """The number of days since the score was submitted."""
+    def elapsed(self) -> int:
+        """Return number of days since the score was submitted."""
         return (tz_now().date() - self.timestamp.date()).days
