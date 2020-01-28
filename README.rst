@@ -6,7 +6,7 @@
 
 **This package now support Python 3.7+ and Django 2.2+ and above only.**
 
-For legacay versions please refer to the relevant tag / branch.**
+For legacay versions please refer to the relevant tag / branch.
 
 Django NPS
 ==========
