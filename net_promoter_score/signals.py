@@ -8,7 +8,8 @@ from django.dispatch import Signal, receiver
 from .models import UserScore
 
 # custom signal sent when a new score is submitted
-new_nps_score = Signal(providing_args=["instance"])
+# providing_args=["instance"]
+new_nps_score = Signal()
 
 
 @receiver(post_save, sender=UserScore)

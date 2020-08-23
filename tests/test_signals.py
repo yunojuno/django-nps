@@ -3,6 +3,7 @@ import unittest
 from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save
 from django.test import TestCase
+
 from net_promoter_score.models import UserScore
 from net_promoter_score.signals import new_nps_score
 
