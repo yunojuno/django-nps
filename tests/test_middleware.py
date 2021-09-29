@@ -10,7 +10,6 @@ from net_promoter_score.models import UserScore
 
 
 class MiddlewareTests(TransactionTestCase):
-
     """Test suite for middleware."""
 
     def setUp(self):

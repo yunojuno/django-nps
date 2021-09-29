@@ -1,9 +1,3 @@
-from distutils.version import StrictVersion
-
-import django
-
-DJANGO_VERSION = StrictVersion(django.get_version())
-
 DEBUG = True
 
 DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": "test.db"}}
@@ -47,7 +41,7 @@ TEMPLATES = [
     }
 ]
 
-SECRET_KEY = "TOP SECRET"
+SECRET_KEY = "TOP SECRET"  # noqa: S105
 
 ROOT_URLCONF = "tests.urls"
 
@@ -55,4 +49,5 @@ APPEND_SLASH = True
 
 STATIC_URL = "/static/"
 
-assert DEBUG is True, "This project is only intended to be used for testing."
+if not DEBUG:
+    raise Exception("This project is only intended to be used for testing.")

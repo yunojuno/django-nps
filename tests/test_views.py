@@ -9,7 +9,6 @@ from net_promoter_score.views import post_score
 
 
 class UserScoreViewTests(TransactionTestCase):
-
     """Test suite for promoter score views."""
 
     def setUp(self):

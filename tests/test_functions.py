@@ -10,7 +10,6 @@ from net_promoter_score.utils import show_nps
 
 
 class FunctionTests(TransactionTestCase):
-
     """Test suite for misc functions."""
 
     def setUp(self):

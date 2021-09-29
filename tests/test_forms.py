@@ -5,7 +5,6 @@ from net_promoter_score.forms import UserScoreForm
 
 
 class UserScoreFormTests(TransactionTestCase):
-
     """Test suite for promoter score forms."""
 
     def setUp(self):
