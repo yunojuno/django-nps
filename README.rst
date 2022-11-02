@@ -4,7 +4,7 @@
 .. image:: https://travis-ci.org/yunojuno/django-nps.svg?branch=master
     :target: https://travis-ci.org/yunojuno/django-nps
 
-**This package now support Python 3.7+ and Django 2.2+ and above only.**
+**This package now support Python 3.8+ and Django 3.2+ and above only.**
 
 For legacay versions please refer to the relevant tag / branch.
 
