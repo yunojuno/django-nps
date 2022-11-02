@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file.
 
+## v0.8.0
+
 * Remove support for Python 3.7
 * Add support for Python 3.10, 3.11
 * Remove support for Django 2.2, 3.0, 3.1
