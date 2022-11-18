@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-nps"
-version = "0.8.0"
+version = "1.0.0"
 description = "Django app supporting Net Promoter Score (NPS) surveys."
 license = "MIT"
 authors = ["YunoJuno <code@yunojuno.com>"]
