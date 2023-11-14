@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [("net_promoter_score", "0001_initial")]
 
     operations = [
