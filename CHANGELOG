@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.1
+
+* Add Django 5.0 to build matrix
+* Add Python 3.12 to build matrix
+* Replace flake8, isort with ruff
+
+No code changes.
+
 ## v1.0.0
 
 * Remove support for Python 3.7
