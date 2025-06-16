@@ -4,6 +4,7 @@ Default settings for net_promoter_score.
 Override these settings in the Django settings if required.
 
 """
+
 from __future__ import annotations
 
 from django.conf import settings

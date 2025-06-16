@@ -7,6 +7,7 @@ on each request. This value is added to the user session (so a max
 of one lookup per session.
 
 """
+
 from __future__ import annotations
 
 from typing import Callable
